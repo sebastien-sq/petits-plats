@@ -1,2 +1,13 @@
-# PetitsPlats2.0
-P7 JS 2.0 Les petits plats
+# PetitsPlats
+![Screenshot](/assets/screenshots/screenshot%201.webp)
+## Description
+## Features
+## Technologies
+- HTML
+- CSS/SASS
+- JavaScript
+- Bootstrap 5
+
+## Installation
+### Gettings started
+

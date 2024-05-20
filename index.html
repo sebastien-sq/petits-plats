@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Title & Description -->
+    <title>Petits Plats</title>
+    <meta name="description" content="Petits Plats est un site de partage de recettes pour les amateurs de bonne cuisine !">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="position-absolute top-5 start-5">
+        <a href="#"><img src="/assets/logo.png" alt=""></a>
+    </header>
+    <main >
+        <section id="hero_section" class="d-flex flex-column justify-content-center align-items-center p-2">
+            <div class="container">
+                <h1 class="w-75 mx-auto mb-5 text-wrap">
+                    CHERCHEZ PARMI PLUS DE 1500 RECETTES
+                DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES
+                </h1>
+                <div class="input-group input-group-lg">
+                    <input type="text" class="form-control border border-end-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Recherchez une recette, un ingrédient, ...">
+                    <button class="input-group-text bg-white border border-0" id="inputGroup-sizing-lg"><img src="/assets/icons/loupe-black.svg" alt=""></button>
+                  </div>
+            </div>
+        </section>
+        <section id="recipes_section" class="container mx-auto ">
+            <div class="row" id="filter_section"></div>
+            <div class="row m-auto mt-4 mb-4" id="card-container">
+            </div>
+        </section>
+    </main>
+</body>
+<script src="/scripts/pages/homepage.js" type="module"></script>
+</html>

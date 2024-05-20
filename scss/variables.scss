@@ -1,0 +1,19 @@
+// Variables
+$yellow : #FFD15B;
+$lightGrey : #F5F5F5;
+$grey : #7A7A7A;
+$black : #000000;
+body{
+    background-color: $lightGrey;
+}
+
+// Font Family Anton
+h1, h2{
+    font-family: 'Anton', sans-serif ;
+    font-weight: 500;
+}
+// Font Family Manrope
+h3,h4, h5, h6, p, a, span, li, button, input, textarea, select, option, label{
+    font-family: 'Manrope', sans-serif;
+    font-weight: 500;
+} 

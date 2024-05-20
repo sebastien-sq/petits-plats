@@ -1,0 +1,12 @@
+@import 'variables.scss';
+#badge{
+    background-color: $yellow;
+    color: $black;
+}
+.card{
+    border-radius: 21px;
+    border:none;
+    img{
+        border-radius: 21px 21px 0 0;
+    }
+}
