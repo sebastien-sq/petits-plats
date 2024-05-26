@@ -2,12 +2,26 @@ body {
   background-color: #e4e4e4 !important;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-family: "Anton", sans-serif !important;
   font-weight: 500 !important;
 }
 
-h3, h4, h5, h6, p, a, span, li, button, input, textarea, select, option, label {
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+li,
+button,
+input,
+textarea,
+select,
+option,
+label {
   font-family: "Manrope", sans-serif !important;
   font-weight: 500 !important;
 }
@@ -22,25 +36,39 @@ h3, h4, h5, h6, p, a, span, li, button, input, textarea, select, option, label {
 }
 
 h1 {
-  color: #FFD15B !important;
+  color: #ffd15b !important;
 }
 
 body {
   background-color: #e4e4e4 !important;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-family: "Anton", sans-serif !important;
   font-weight: 500 !important;
 }
 
-h3, h4, h5, h6, p, a, span, li, button, input, textarea, select, option, label {
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+li,
+button,
+input,
+textarea,
+select,
+option,
+label {
   font-family: "Manrope", sans-serif !important;
   font-weight: 500 !important;
 }
 
 #badge {
-  background-color: #FFD15B;
+  background-color: #ffd15b;
   color: #000000;
   position: absolute;
   top: 1%;
@@ -66,22 +94,35 @@ h3, h4, h5, h6, p, a, span, li, button, input, textarea, select, option, label {
   width: 200px;
 }
 
-#btn-delete,
 #search-label {
   position: absolute;
   padding: 0;
   margin: 0;
 }
 
-#btn-delete {
-  top: -1%;
-  right: 15%;
+.btn-deleteSearch {
+  position: absolute !important;
+  padding: 0;
+  margin: 0;
+  top: 0 !important;
+  right: 8% !important;
   display: none;
 }
 
 #search-label {
   top: -1%;
   right: 2%;
+}
+
+#tags {
+  padding-left: 0.5em;
+}
+#tags .tag {
+  background-color: #ffd15b;
+  color: #000000;
+  font-size: 1em;
+  padding: 0.5em 30px;
+  height: auto;
 }
 
 header {

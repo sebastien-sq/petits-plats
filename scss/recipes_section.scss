@@ -16,28 +16,41 @@
   }
 }
 .dropdown-container {
-    // Set the width of the dropdown container to 200px, and set the width of the dropdown menu to 200px, to match his parent container
+  // Set the width of the dropdown container to 200px, and set the width of the dropdown menu to 200px, to match his parent container
   width: 200px;
   display: flex;
   justify-content: start;
   align-items: center;
-  & .dropdown-menu{
+  & .dropdown-menu {
     width: 200px;
   }
-
 }
-#btn-delete,
+
 #search-label {
   position: absolute;
   padding: 0;
   margin: 0;
 }
-#btn-delete {
-  top: -1%;
-  right: 15%;
+.btn-deleteSearch {
+  position: absolute !important;
+  padding: 0;
+  margin: 0;
+  top: 0 !important;
+  right: 8% !important;
   display: none;
 }
 #search-label {
   top: -1%;
   right: 2%;
+}
+#tags {
+  // max-height: 5vh;
+  padding-left: 0.5em;
+  .tag {
+    background-color: $yellow;
+    color: $black;
+    font-size: 1em;
+    padding: 0.5em 30px;
+    height: auto;
+  }
 }
