@@ -1,49 +1,57 @@
-import { getAppliances, getIngredients, getUstensils } from "../utils/getFilters.js";
+import {
+  getAppliances,
+  getIngredients,
+  getUstensils,
+} from "../utils/getFilters.js";
 export default class Filters {
-    constructor(data){
-        this.ustensils = getUstensils(data);
-        this.ingredients = getIngredients(data);
-        this.appliances = getAppliances(data);
-    }
+  constructor(data) {
+    this.ustensils = getUstensils(data);
+    this.ingredients = getIngredients(data);
+    this.appliances = getAppliances(data);
+  }
 
-    createFilters(){
-        const filters = document.getElementById('filters');
-        filters.innerHTML = `
-        <div class="dropdown mt-4 mb-4">
-            <button class="btn btn-light btn-lg dropdown-toggle z-index-10" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Ingrédients
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <input class="dropdown-item" type="text" placeholder="Search" aria-label="Search">
-                <div class="dropdown-divider">
-                </div>
-                ${this.ingredients.map(ingredient => (`<a class="dropdown-item" href="#">${ingredient}</a>`)).join('')}
+  createDropdown(id, title, items) {
+    return `
+        <div class="dropdown-container mt-4 mb-4">
+          <button class="btn btn-light btn-lg dropdown-toggle w-100" type="button" id="${id}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            ${title}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="${id}">
+            <div class="input-group position-relative w-100 h-auto">
+              <input class="dropdown-search" type="text" aria-label="Search">
+              <button class="btn z-index-100" id="btn-delete" type="button">
+                <img src="/assets/icons/delete-icon.svg" height="12px">
+              </button>
+              <label for="search" name="search" id="search-label" >
+              <img src="/assets/icons/loupe.svg" height='20px'>
+              </label>
             </div>
-        </div>
-        <div class="dropdown mt-4 mb-4">
-        <button class="btn btn-light btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Appareil
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <input class="dropdown-item" type="text" placeholder="Search" aria-label="Search">
-            <div class="dropdown-divider">
-            </div>
-            ${this.appliances.map(appliance => (`<a class="dropdown-item" href="#">${appliance}</a>`)).join('')}
-        </div>
-    </div>
-    <div class="dropdown mt-4 mb-4">
-        <button class="btn btn-light btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Ustensiles
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <input class="dropdown-item" type="text" placeholder="Search" aria-label="Search">
             <div class="dropdown-divider"></div>
-            ${this.ustensils.map(ustensil => (`<a class="dropdown-item" href="#">${ustensil}</a>`)).join('')}
-        </div>
-    </div>
-        `;
-    }
+            ${items
+              .map((item) => `<a class="dropdown-item" href="#">${item}</a>`)
+              .join("")}
+          </div>
+        </div>`;
+  }
 
+  createFilters() {
+    const filters = document.getElementById("filters");
+    filters.innerHTML = `
+        ${this.createDropdown(
+          "ingredientsDropdown",
+          "Ingrédients",
+          this.ingredients
+        )}
+        ${this.createDropdown(
+          "appliancesDropdown",
+          "Appareil",
+          this.appliances
+        )}
+        ${this.createDropdown(
+          "ustensilsDropdown",
+          "Ustensiles",
+          this.ustensils
+        )}
+      `;
+  }
 }
-
-

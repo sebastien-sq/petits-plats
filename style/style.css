@@ -56,32 +56,10 @@ h3, h4, h5, h6, p, a, span, li, button, input, textarea, select, option, label {
   max-height: 30vh;
 }
 
-.dropdown-container {
-  width: 200px;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-}
-.dropdown-container .dropdown-menu {
-  width: 200px;
-}
-
-#btn-delete,
-#search-label {
-  position: absolute;
-  padding: 0;
-  margin: 0;
-}
-
 #btn-delete {
-  top: -1%;
-  right: 15%;
-  display: none;
-}
-
-#search-label {
-  top: -1%;
-  right: 2%;
+  position: absolute;
+  top: 0;
+  right: 5%;
 }
 
 header {

@@ -1,16 +1,43 @@
-@import 'variables.scss';
+@import "variables.scss";
 
-#badge{
-    background-color: $yellow;
-    color: $black;
-    position: absolute;
-    top: 1%;
-    right: 3%;
+#badge {
+  background-color: $yellow;
+  color: $black;
+  position: absolute;
+  top: 1%;
+  right: 3%;
 }
-.card{
-    border-radius: 21px !important;
-    border:none !important;
-    img{
-        border-radius: 21px 21px 0 0;
-    }
+.card {
+  border-radius: 21px !important;
+  border: none !important;
+  img {
+    border-radius: 21px 21px 0 0;
+    max-height: 30vh;
+  }
+}
+.dropdown-container {
+    // Set the width of the dropdown container to 200px, and set the width of the dropdown menu to 200px, to match his parent container
+  width: 200px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  & .dropdown-menu{
+    width: 200px;
+  }
+
+}
+#btn-delete,
+#search-label {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+}
+#btn-delete {
+  top: -1%;
+  right: 15%;
+  display: none;
+}
+#search-label {
+  top: -1%;
+  right: 2%;
 }
