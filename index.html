@@ -54,17 +54,27 @@
             CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN, SIMPLES ET
             DÉLICIEUSES
           </h1>
-          <div class="input-group input-group-lg">
+          <div class="input-group input-group-lg position-relative">
             <input
               type="text"
               class="form-control border border-end-0"
               aria-label="Input for recipes search"
               aria-describedby="inputGroup-sizing-lg"
               placeholder="Recherchez une recette, un ingrédient, ..."
+              id="main-search-input"
             />
             <button
+              class="btn z-index-100"
+              id="btn-main-deleteSearch"
+              type="button"
+              style="display: none"
+              aria-label="Delete your recipe search"
+            >
+              <img src="/assets/icons/delete-icon.svg" height="20px" />
+            </button>
+            <button
               class="input-group-text bg-white border border-0"
-              id="inputGroup-sizing-lg"
+              id="btn-main-search"
             >
               <img src="/assets/icons/loupe-black.svg" alt="" />
             </button>

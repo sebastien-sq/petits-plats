@@ -2,6 +2,7 @@ import Api from "../api/Api.js";
 import Recipe from "../models/Recipe.js";
 import RecipeCard from "../templates/RecipeCard.js";
 import Filters from "../templates/Filters.js";
+import { handleMainSearch } from "../utils/handleMainSearch.js";
 
 // Create an instance of the Api class
 const url = "/data/recipes.json";
@@ -29,6 +30,9 @@ const displayRecipes = async () => {
       colDiv.appendChild(recipeCard.createRecipeCard());
       // Add the column (and therefore the card) to the container
       container.appendChild(colDiv);
+
+
+
     });
   } catch (error) {
     console.error(error);
@@ -36,3 +40,4 @@ const displayRecipes = async () => {
 };
 // Call the displayRecipes function
 displayRecipes();
+handleMainSearch();

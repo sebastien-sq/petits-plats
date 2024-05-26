@@ -20,13 +20,13 @@ export default class Filters {
           
           <div class="dropdown-menu" aria-labelledby="${id}">
             <div class="input-group position-relative w-100 h-auto">
-              <input class="dropdown-search" type="text" aria-label="Search">
+              <input class="dropdown-search-input" type="text" aria-label="Search">
               <button class="btn z-index-100 btn-deleteSearch" type="button" style="display:none">
                 <img src="/assets/icons/delete-icon.svg" height="12px">
               </button>
-              <label for="search" name="search" id="search-label" >
+              <button type="submit" id="btn-tags-search" >
               <img src="/assets/icons/loupe.svg" height='20px'>
-              </label>
+              </button>
             </div>
             <div class="dropdown-divider"></div>
             ${items
@@ -55,23 +55,25 @@ export default class Filters {
           this.ustensils
         )}
       `;
-    // Display the btn-delete when the input is focused
-    const dropdownSearch = document.querySelectorAll(".dropdown-search");
+    const dropdownSearch = document.querySelectorAll(".dropdown-search-input");
     dropdownSearch.forEach((input) => {
-      input.addEventListener("focus", () => {
-        input.nextElementSibling.style.display = "flex";
+      const btnDelete = input.nextElementSibling;
+      // Hide the delete button as search field is empty at first
+      if (input.value.trim() === "")
+        input.nextElementSibling.style.display = "none";
+      // Show or hide the delete button on input
+      input.addEventListener("input", () => {
+        input.value.trim() === ""
+          ? (input.nextElementSibling.style.display = "none")
+          : (input.nextElementSibling.style.display = "flex");
       });
-    });
 
-    // Delete the text in the search input
-    const btnDelete = document.querySelectorAll(".btn-deleteSearch");
-    btnDelete.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        // Prevent the dropdown from closing
+      // Add click event listener to the delete button
+      btnDelete.addEventListener("click", (e) => {
         e.stopPropagation();
-        // Get the input element and delete the text
-        const input = btn.previousElementSibling;
         input.value = "";
+        btnDelete.style.display = "none";
+        input.focus();
       });
     });
 
