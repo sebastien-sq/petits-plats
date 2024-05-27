@@ -20,7 +20,7 @@ export default class Filters {
           
           <div class="dropdown-menu" aria-labelledby="${id}">
             <div class="input-group position-relative w-100 h-auto">
-              <input class="dropdown-search-input" type="text" aria-label="Search">
+              <input class="dropdown-search-input" type="text" aria-label="Search" min=3>
               <button class="btn z-index-100 btn-deleteSearch" type="button" style="display:none">
                 <img src="/assets/icons/delete-icon.svg" height="12px">
               </button>

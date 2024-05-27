@@ -93,6 +93,28 @@ label {
 .dropdown-container .dropdown-menu {
   width: 200px;
 }
+.dropdown-container .dropdown-menu .dropdown-item:hover {
+  background-color: #ffd15b !important;
+  color: #000000 !important;
+}
+.dropdown-container .dropdown-menu .input-group .btn-deleteSearch {
+  position: absolute !important;
+  padding: 0;
+  margin: 0;
+  top: 21% !important;
+  right: 15% !important;
+  display: none;
+  z-index: 5 !important;
+}
+.dropdown-container .dropdown-menu .input-group #btn-tags-search {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  border: none;
+  top: -1%;
+  right: 2%;
+  background-color: transparent;
+}
 
 #btn-main-deleteSearch {
   padding: 0;
@@ -101,26 +123,6 @@ label {
   top: 37%;
   right: 10%;
   z-index: 10;
-}
-
-.btn-deleteSearch {
-  position: absolute !important;
-  padding: 0;
-  margin: 0;
-  top: 0 !important;
-  right: 10% !important;
-  display: none;
-  z-index: 5 !important;
-}
-
-#btn-tags-search {
-  position: absolute;
-  padding: 0;
-  margin: 0;
-  border: none;
-  top: -1%;
-  right: 2%;
-  background-color: transparent;
 }
 
 #tags {
