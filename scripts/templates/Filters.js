@@ -81,7 +81,24 @@ export default class Filters {
     const dropdownItems = document.querySelectorAll(".dropdown-item");
     dropdownItems.forEach((item) => {
       item.addEventListener("click", (e) => {
-        const newTag = new Tag(item.textContent);
+        e.preventDefault();
+        // Get the tags container to check if the tag already exists in the tags container
+        const tags = document.getElementById("tags");
+        if (tags) {
+          const tagsList = tags.querySelectorAll(".tag");
+          let tagExists = false;
+          Array.from(tagsList).forEach((tag) => {
+            if (tag.textContent.trim() === item.textContent.trim()) {
+              tagExists = true;
+            }
+          });
+          // If the tag already exists, return
+          if (tagExists) {
+            return;
+          }
+        }
+        // If the tag does not exist, create a new tag
+        const newTag = new Tag(item.textContent.trim());
         newTag.createTag();
       });
     });
