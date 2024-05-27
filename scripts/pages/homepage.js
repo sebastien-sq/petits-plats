@@ -1,43 +1,30 @@
 import Api from "../api/Api.js";
-import Recipe from "../models/Recipe.js";
-import RecipeCard from "../templates/RecipeCard.js";
-import Filters from "../templates/Filters.js";
-import { handleMainSearch } from "../utils/handleMainSearch.js";
+import { showRecipes } from "../utils/showRecipes.js";
 
 // Create an instance of the Api class
 const url = "/data/recipes.json";
 const api = new Api(url);
-// Get the container element
-const container = document.getElementById("card-container");
+// Get the recipes data at first load
+const allRecipes = await api.get();
+// Call the showRecipes function at first load
+showRecipes(allRecipes);
 
-const displayRecipes = async () => {
-  try {
-    // Get the recipes data
-    const data = await api.get();
-    // Create an array of Recipe objects
-    const recipes = data.map((recipe) => new Recipe(recipe));
-    // Create an instance of the Filters class
-    const filters = new Filters(recipes);
-    // Call the createFilters method to display the filters
-    filters.createFilters();
-    // Create an array of RecipeCard objects
-    const recipeCards = recipes.map((recipe) => new RecipeCard(recipe));
-    // Append the recipe cards to the colDiv
-    recipeCards.forEach((recipeCard) => {
-      const colDiv = document.createElement("div");
-      colDiv.className =
-        "col-4 d-flex align-items-start justify-content-start gap-3";
-      colDiv.appendChild(recipeCard.createRecipeCard());
-      // Add the column (and therefore the card) to the container
-      container.appendChild(colDiv);
-
-
-
-    });
-  } catch (error) {
-    console.error(error);
-  }
-};
-// Call the displayRecipes function
-displayRecipes();
-handleMainSearch();
+// Add Event Listener to the main search
+const mainInput = document.getElementById("main-search-input");
+const btnDelete = document.getElementById("btn-main-deleteSearch");
+// Hide the delete button if mainInput search field is empty
+if (mainInput.value.trim() === "") {
+  btnDelete.style.display = "none";
+}
+// Show or hide the delete button on input
+mainInput.addEventListener("input", () => {
+  mainInput.value.trim() === ""
+    ? (btnDelete.style.display = "none")
+    : (btnDelete.style.display = "flex");
+});
+// Add eventlistner on delete button to delete the input field
+btnDelete.addEventListener("click", () => {
+  mainInput.value = "";
+  btnDelete.style.display = "none";
+  mainInput.focus();
+});

@@ -34,10 +34,9 @@
         margin: 0;
         top: 21% !important;
         right: 15% !important;
-        display: none;
+        // display: block;
         z-index: 5 !important;
       }
-
       & #btn-tags-search {
         position: absolute;
         padding: 0;
