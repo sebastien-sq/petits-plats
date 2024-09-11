@@ -31,9 +31,10 @@ btnDelete.addEventListener("click", () => {
   showRecipes(allRecipes);
 });
 //
-// Add eventlistener on input field to search the recipe and show the filtered recipes
+// Add eventlistener on input field to search the recipe and show the filtered recipes, only if the input field is greater than 3 characters
 //
 mainInput.addEventListener("input", () => {
+  if (mainInput.value.length >= 3) {
   const filteredRecipes = mainSearch(allRecipes);
-  showRecipes(filteredRecipes);
+  showRecipes(filteredRecipes)}
 });
