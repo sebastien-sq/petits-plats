@@ -1,12 +1,13 @@
 export function mainSearch(allRecipes) {
   const filteredData = allRecipes.filter((recipe) => {
-    const searchValue = document
+
+    const searchedItem = document
       .getElementById("main-search-input")
       .value.toLowerCase();
 
-    const ingredientFilter = Array.from(recipe.ingredients).includes(searchValue);
+    const ingredientFilter = Array.from(recipe.ingredients).includes(searchedItem);
     console.log(ingredientFilter)
-    return recipe.name.toLowerCase().includes(searchValue);
+    return recipe.name.toLowerCase().includes(searchedItem);
   });
   return filteredData;
 }
