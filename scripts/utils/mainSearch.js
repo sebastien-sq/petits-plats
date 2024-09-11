@@ -1,5 +1,5 @@
-export function mainSearch(allRecipes) {
-  const filteredRecipes = allRecipes.filter((recipe) => {
+export function mainSearch(recipes) {
+  const filteredRecipes = recipes.filter((recipe) => {
 
     const searchedItem = document
       .getElementById("main-search-input")
