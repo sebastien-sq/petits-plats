@@ -1,5 +1,5 @@
 export function mainSearch(allRecipes) {
-  const filteredData = allRecipes.filter((recipe) => {
+  const filteredRecipes = allRecipes.filter((recipe) => {
 
     const searchedItem = document
       .getElementById("main-search-input")
@@ -9,5 +9,5 @@ export function mainSearch(allRecipes) {
     console.log(ingredientFilter)
     return recipe.name.toLowerCase().includes(searchedItem);
   });
-  return filteredData;
+  return filteredRecipes;
 }
