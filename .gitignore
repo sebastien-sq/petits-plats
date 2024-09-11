@@ -1,0 +1,6 @@
+## Ignore dependencies
+node_modules
+
+## pnpm
+.pnp
+pnpm-lock.yaml

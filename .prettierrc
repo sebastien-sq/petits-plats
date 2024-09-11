@@ -1,0 +1,20 @@
+{
+    "printWidth": 80, // Limite de la longueur des lignes
+    "tabWidth": 2, // Largeur de la tabulation
+    "useTabs": false, // Utiliser des espaces au lieu de tabulations
+    "semi": false, // Ajouter des points-virgules à la fin des lignes
+    "singleQuote": true, // Utiliser des guillemets simples au lieu de doubles
+    "quoteProps": "as-needed", // Ajouter des guillemets autour des propriétés d'objet seulement si nécessaire
+    "arrowParens": "always", // Toujours ajouter des parenthèses autour des arguments des fonctions fléchées
+    "htmlWhitespaceSensitivity": "css", // Respecter les règles CSS pour le traitement des espaces blancs dans HTML
+    "endOfLine": "lf", // Utiliser des sauts de ligne de type LF (Unix)
+    "embeddedLanguageFormatting": "auto", // Formater automatiquement le code intégré (par exemple, du JS dans du HTML)
+    "overrides": [
+        {
+            "files": "*.scss",
+            "options": {
+                "singleQuote": false // Utiliser des guillemets doubles dans les fichiers SCSS pour respecter les conventions Sass/Bootstrap
+            }
+        }
+    ]
+}

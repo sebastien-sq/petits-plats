@@ -6,6 +6,8 @@ export function showRecipes(data) {
   try {
     // Get the container element
     const container = document.getElementById("card-container");
+    // Clear the container
+    container.innerHTML = "";
     // Update the recipes counter
     const recipesCounter = document.getElementById("counter");
     recipesCounter.textContent = `${data.length} recettes`;
