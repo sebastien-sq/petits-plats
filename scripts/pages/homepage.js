@@ -37,4 +37,7 @@ mainInput.addEventListener("input", () => {
   if (mainInput.value.length >= 3) {
   const filteredRecipes = mainSearch(allRecipes);
   showRecipes(filteredRecipes)}
+  else {
+    showRecipes(allRecipes);
+  }
 });

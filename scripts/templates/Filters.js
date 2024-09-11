@@ -67,7 +67,7 @@ export default class Filters {
           ? (input.nextElementSibling.style.display = "none")
           : (input.nextElementSibling.style.display = "flex");
       });
-
+      
       // Add click event listener to the delete button
       btnDelete.addEventListener("click", (e) => {
         e.stopPropagation();
