@@ -4,6 +4,8 @@ import {
   getUstensils,
 } from "../utils/handleTags.js";
 import Tag from "./Tag.js";
+import { showRecipes } from "../utils/showRecipes.js";
+
 export default class Filters {
   constructor(data) {
     this.ustensils = getUstensils(data);
@@ -20,7 +22,7 @@ export default class Filters {
           
           <div class="dropdown-menu" aria-labelledby="${id}">
             <div class="input-group position-relative w-100 h-auto">
-              <input class="dropdown-search-input" type="text" aria-label="Search" min=3>
+              <input class="dropdown-search-input" type="text" aria-label="Search" min=3 data-type="${title}">
               <button class="btn z-index-100 btn-deleteSearch" type="button" style="display:none">
                 <img src="/assets/icons/delete-icon.svg" height="12px">
               </button>
@@ -58,22 +60,39 @@ export default class Filters {
     const dropdownSearch = document.querySelectorAll(".dropdown-search-input");
     dropdownSearch.forEach((input) => {
       const btnDelete = input.nextElementSibling;
+      // Select only the nearest parent container to only have search results among the same type of filters : ingredients, appliances, ustensils
+      const dropdownParentContainer = input.closest('.dropdown-container');
+      const dropdownItemsOfSameType = dropdownParentContainer.querySelectorAll('.dropdown-item');
+
       // Hide the delete button as search field is empty at first
       if (input.value.trim() === "")
-        input.nextElementSibling.style.display = "none";
+        btnDelete.style.display = "none";
       // Show or hide the delete button on input
       input.addEventListener("input", () => {
         input.value.trim() === ""
-          ? (input.nextElementSibling.style.display = "none")
-          : (input.nextElementSibling.style.display = "flex");
+          ? (btnDelete.style.display = "none")
+          : (btnDelete.style.display = "flex");
       });
-      
-      // Add click event listener to the delete button
+      // Search the term in the dropdown, update the dropdown with the filtered items and show the recipes
+     input.addEventListener("input", () => {
+      const searchTerm = input.value.toLowerCase().trim();
+      dropdownItemsOfSameType.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+            // Add click event listener to the delete button
       btnDelete.addEventListener("click", (e) => {
         e.stopPropagation();
         input.value = "";
         btnDelete.style.display = "none";
         input.focus();
+        dropdownItemsOfSameType.forEach(item => {
+          item.style.display = '';
+        });
       });
     });
 
@@ -102,5 +121,6 @@ export default class Filters {
         newTag.createTag();
       });
     });
+  });
   }
 }

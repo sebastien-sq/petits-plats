@@ -35,7 +35,7 @@ btnDelete.addEventListener("click", () => {
 //
 mainInput.addEventListener("input", () => {
   if (mainInput.value.length >= 3) {
-  const filteredRecipes = mainSearch(allRecipes);
+  const filteredRecipes = mainSearch(allRecipes, mainInput.value);
   showRecipes(filteredRecipes)}
   else {
     showRecipes(allRecipes);
