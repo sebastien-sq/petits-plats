@@ -13,6 +13,9 @@ export function mainSearch(recipes, searchedItem, tagArray) {
   } 
 
   // Check if the recipe has the selected tags if there are selected tags
+  // Difference between every and some is that every is true if all tags are present,
+  // and some is true if at least one tag is present
+  
   if (tagArray && tagArray.length > 0) {
     filteredRecipes = filteredRecipes.filter((recipe) => {
       // Check if all ingredient tags are present in the recipe
@@ -21,8 +24,8 @@ export function mainSearch(recipes, searchedItem, tagArray) {
       );
     
       // Check if any appliance tags are present
-      const applianceTagsMatch = tagArray.every(tag =>
-        recipe.appliance.some(app => app.toLowerCase().includes(tag.toLowerCase()))
+      const applianceTagsMatch = tagArray.some(tag =>
+        recipe.appliance.toLowerCase().includes(tag.toLowerCase())
       );
     
       // Check if any utensil tags are present
