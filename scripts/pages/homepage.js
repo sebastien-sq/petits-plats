@@ -7,6 +7,8 @@ const url = "/data/recipes.json";
 const api = new Api(url);
 // Get the recipes data at first load
 export const allRecipes = await api.get();
+// Initialize the tag array
+export const tagArray = [];
 // Call the showRecipes function at first load
 showRecipes(allRecipes);
 
@@ -35,9 +37,11 @@ btnDelete.addEventListener("click", () => {
 //
 mainInput.addEventListener("input", () => {
   if (mainInput.value.length >= 3) {
-  const filteredRecipes = mainSearch(allRecipes, mainInput.value);
+  const filteredRecipes = mainSearch(allRecipes, mainInput.value, tagArray);
   showRecipes(filteredRecipes)}
   else {
     showRecipes(allRecipes);
   }
 });
+
+

@@ -102,9 +102,9 @@ export default class Filters {
       item.addEventListener("click", (e) => {
         e.preventDefault();
         // Get the tags container to check if the tag already exists in the tags container
-        const tags = document.getElementById("tags");
-        if (tags) {
-          const tagsList = tags.querySelectorAll(".tag");
+        const tagsContainer = document.getElementById("tags");
+        if (tagsContainer) {
+          const tagsList = tagsContainer.querySelectorAll(".tag");
           let tagExists = false;
           Array.from(tagsList).forEach((tag) => {
             if (tag.textContent.trim() === item.textContent.trim()) {

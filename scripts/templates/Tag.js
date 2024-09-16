@@ -1,3 +1,5 @@
+import { removeTagFromArray, addTagToArray } from "../utils/updateTagArray.js";
+
 export default class Tag {
   constructor(data) {
     this.tag = data;
@@ -13,12 +15,15 @@ export default class Tag {
               </button>
                 </span>
         `;
-
-    // Get the delete button to remove the tag
+    // Add the tag to the array and update the search
+    addTagToArray(this.tag);
+    // Get the delete button to remove the tag and remove the tag from the array
     const deleteTag = document.querySelectorAll(".btn-deleteTag");
     deleteTag.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const tag = btn.parentElement;
+        // Remove the tag from the array and update the search
+        removeTagFromArray(tag.textContent.trim());
         tag.remove();
       });
     });
