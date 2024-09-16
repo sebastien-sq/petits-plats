@@ -19,12 +19,7 @@ const btnDelete = document.getElementById("btn-main-deleteSearch");
 if (mainInput.value.trim() === "") {
   btnDelete.style.display = "none";
 }
-// Show or hide the delete button on input
-mainInput.addEventListener("input", () => {
-  if (mainInput.value.trim() !== "") {
-    btnDelete.style.display = "flex";
-  }
-});
+
 // Add eventlistener on delete button to delete the input field
 btnDelete.addEventListener("click", () => {
   mainInput.value = "";
@@ -36,12 +31,25 @@ btnDelete.addEventListener("click", () => {
 // Add eventlistener on input field to search the recipe and show the filtered recipes, only if the input field is greater than 3 characters
 //
 mainInput.addEventListener("input", () => {
+// Show or hide the delete button on input
+  if (mainInput.value.trim() !== "") {
+    btnDelete.style.display = "flex";
+  }
   if (mainInput.value.length >= 3) {
   const filteredRecipes = mainSearch(allRecipes, mainInput.value, tagArray);
   showRecipes(filteredRecipes)}
-  else {
-    showRecipes(allRecipes);
-  }
+ 
 });
 
+mainInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    if (mainInput.value.length >= 3) {
+      const filteredRecipes = mainSearch(allRecipes, mainInput.value, tagArray);
+      showRecipes(filteredRecipes)}
+      // Focus and clear the input field
+      mainInput.focus();
+      mainInput.value = "";
+      btnDelete.style.display = "none";
+  }
+});
 

@@ -1,17 +1,16 @@
-
 export function mainSearch(recipes, searchedItem, tagArray) {
-  const searchedTerm = searchedItem.trim().toLowerCase().split(/\s+/);
-  const searchRegex = new RegExp(`\\b(${searchedTerm.join('|')})\\b`, 'i');
+  // Normalisation des termes de recherche
+  const searchedTerm = searchedItem.trim().toLowerCase();
+
   let filteredRecipes = recipes;
 
-  // Check the main search input if the recipe name, description or ingredients match the search term
-  if (searchedTerm && searchedTerm.length > 0) {
+  if (searchedTerm.length > 0) {
     filteredRecipes = recipes.filter((recipe) => 
-      searchRegex.test(recipe.name.toLowerCase()) ||
-      searchRegex.test(recipe.description.toLowerCase()) ||
-      recipe.ingredients.some(ing => searchRegex.test(ing.ingredient.toLowerCase()))
+      recipe.name.toLowerCase().includes(searchedTerm) ||
+      recipe.description.toLowerCase().includes(searchedTerm) ||
+      recipe.ingredients.some(ing => ing.ingredient.toLowerCase().includes(searchedTerm))
     );
-  }
+  } 
 
   // Check if the recipe has the selected tags if there are selected tags
   if (tagArray && tagArray.length > 0) {
@@ -22,16 +21,16 @@ export function mainSearch(recipes, searchedItem, tagArray) {
       );
     
       // Check if any appliance tags are present
-      const applianceTagsMatch = tagArray.some(tag =>
-        recipe.appliance.toLowerCase().includes(tag.toLowerCase())
+      const applianceTagsMatch = tagArray.every(tag =>
+        recipe.appliance.some(app => app.toLowerCase().includes(tag.toLowerCase()))
       );
     
       // Check if any utensil tags are present
-      const ustensilTagsMatch = tagArray.some(tag =>
+      const ustensilTagsMatch = tagArray.every(tag =>
         recipe.ustensils.some(ust => ust.toLowerCase().includes(tag.toLowerCase()))
       );
     
-      // A recipe must satisfy all ingredient tags and at least one appliance or utensil tag
+      // A recipe must satisfy all ingredients, any appliances or utensils tag
       return ingredientTagsMatch || applianceTagsMatch || ustensilTagsMatch;
     });
     
@@ -39,7 +38,7 @@ export function mainSearch(recipes, searchedItem, tagArray) {
 
   if (filteredRecipes.length === 0) {
     const mainInput = document.getElementById("main-search-input");
-    mainInput.placeholder = `Aucune recette ne correspond à votre recherche "${searchedTerm.join(' ')}"`;
+    mainInput.placeholder = `Aucune recette ne correspond à votre recherche "${searchedTerm}"`;
   }
 
   return filteredRecipes;

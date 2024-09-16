@@ -4,7 +4,7 @@ export default class Tag {
   constructor(data) {
     this.tag = data;
   }
-
+ // When a tag is created, add it to the tagArray and update the search
   createTag() {
     const tagsContainer = document.getElementById("tags");
     tagsContainer.innerHTML += `
@@ -17,13 +17,15 @@ export default class Tag {
         `;
     // Add the tag to the array and update the search
     addTagToArray(this.tag);
-    // Get the delete button to remove the tag and remove the tag from the array
+
+    // Get the delete button to remove the tag and remove the tag from the tag array
     const deleteTag = document.querySelectorAll(".btn-deleteTag");
     deleteTag.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const tag = btn.parentElement;
         // Remove the tag from the array and update the search
         removeTagFromArray(tag.textContent.trim());
+        // Complete remove the tag from the DOM
         tag.remove();
       });
     });

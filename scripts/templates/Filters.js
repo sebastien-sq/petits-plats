@@ -4,7 +4,6 @@ import {
   getUstensils,
 } from "../utils/handleTags.js";
 import Tag from "./Tag.js";
-import { showRecipes } from "../utils/showRecipes.js";
 
 export default class Filters {
   constructor(data) {
