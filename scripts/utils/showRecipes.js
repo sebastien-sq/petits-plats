@@ -23,7 +23,7 @@ export function showRecipes(data) {
     recipeCards.forEach((recipeCard) => {
       const colDiv = document.createElement("div");
       colDiv.className =
-        "col-4 d-flex align-items-start justify-content-start gap-3";
+        "col d-flex align-items-start justify-content-start";
       colDiv.appendChild(recipeCard.createRecipeCard());
       // Add the column (and therefore the card) to the container
       container.appendChild(colDiv);
