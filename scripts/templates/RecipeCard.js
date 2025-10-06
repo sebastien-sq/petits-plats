@@ -11,7 +11,8 @@ export default class RecipeCard {
       "shadow-md",
       "position-relative",
       "recipe-card",
-      "mb-4"
+      "h-100",
+      "w-100"
     );
 
     article.innerHTML = `
@@ -24,7 +25,7 @@ export default class RecipeCard {
         <div class="card-body">
           <h2 class="card-title fw-bold fs-4 mb-4">${this.data.name}</h2>
           <h3 class="card-subtitle fw-bold fs-6 text-uppercase mb-4 text-secondary">Recette</h3>
-          <p class="card-text mb-4">${this.data.description}</p>
+          <p class="card-text mb-4 clamp-3">${this.data.description}</p>
           <h3 class="card-subtitle fw-bold fs-6 text-uppercase mb-4 text-secondary">Ingrédients</h3>
           <div class="container p-0 row">
             ${this.data.ingredients

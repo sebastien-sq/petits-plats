@@ -97,6 +97,20 @@ label {
   background-color: #ffd15b !important;
   color: #000000 !important;
 }
+.dropdown-container .dropdown-menu .dropdown-item.dropdown-item-selected {
+  background-color: #ffd15b !important;
+  color: #000000 !important;
+}
+.dropdown-container .dropdown-menu .dropdown-item.dropdown-item-selected {
+  display: flex;
+  align-items: center;
+}
+.dropdown-container .dropdown-menu .dropdown-item .btn-remove-selected {
+  margin-left: auto;
+}
+.dropdown-container .dropdown-menu .dropdown-item.dropdown-item-selected img {
+  filter: none;
+}
 .dropdown-container .dropdown-menu .input-group .btn-deleteSearch {
   position: absolute !important;
   padding: 0;
@@ -139,6 +153,14 @@ header {
   position: absolute;
   top: 5%;
   left: 5%;
+}
+
+/* Clamp multi-lignes pour les descriptions */
+.clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /*# sourceMappingURL=style.css.map */

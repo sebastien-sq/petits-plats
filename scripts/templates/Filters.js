@@ -4,6 +4,8 @@ import {
   getUstensils,
 } from "../utils/handleTags.js";
 import Tag from "./Tag.js";
+import { tagArray } from "../pages/homepage.js";
+import { removeTagFromArray } from "../utils/updateTagArray.js";
 
 export default class Filters {
   constructor(data) {
@@ -31,7 +33,7 @@ export default class Filters {
             </div>
             <div class="dropdown-divider"></div>
             ${items
-              .map((item) => `<a class="dropdown-item" href="#">${item}</a>`)
+              .map((item) => `<a class=\"dropdown-item\" href=\"#\">${item}</a>`)
               .join("")}
           </div>
         </div>`;
@@ -98,26 +100,88 @@ export default class Filters {
     // Get the dropdown items to show what items/tags is selected on the tags container
     const dropdownItems = document.querySelectorAll(".dropdown-item");
     dropdownItems.forEach((item) => {
+      const text = item.textContent.trim();
+      // Marquer visuellement les tags déjà sélectionnés
+      if (tagArray.includes(text)) {
+        item.classList.add("dropdown-item-selected", "fw-bold", "d-flex", "align-items-center");
+        // Ajouter un bouton croix pour retirer (une seule fois)
+        if (!item.querySelector(".btn-remove-selected")) {
+          const removeBtn = document.createElement("button");
+          removeBtn.className = "btn btn-sm p-0 m-0 ms-auto btn-remove-selected";
+          removeBtn.setAttribute("aria-label", `Retirer le tag ${text}`);
+          removeBtn.innerHTML = `<img src="/assets/icons/delete-icon.svg" height="12" alt="retirer">`;
+          item.appendChild(removeBtn);
+          removeBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            removeTagFromArray(text);
+            // Retirer le badge correspondant du conteneur #tags
+            const tagsContainer = document.getElementById("tags");
+            if (tagsContainer) {
+              const tagsList = tagsContainer.querySelectorAll(".tag");
+              Array.from(tagsList).forEach((tagEl) => {
+                if (tagEl.textContent.trim() === text) {
+                  tagEl.remove();
+                }
+              });
+            }
+            // Nettoyer l'état visuel dans le dropdown
+            item.classList.remove("dropdown-item-selected", "fw-bold", "d-flex", "align-items-center");
+            const existingBtn = item.querySelector(".btn-remove-selected");
+            if (existingBtn) existingBtn.remove();
+          });
+        }
+      }
+
+      // Ajout d'un tag au clic sur l'élément
       item.addEventListener("click", (e) => {
         e.preventDefault();
-        // Get the tags container to check if the tag already exists in the tags container
+        const tagText = item.firstChild ? item.firstChild.textContent.trim() : text;
+        // Si déjà sélectionné, ne rien faire ici (le bouton croix gère la suppression)
+        if (tagArray.includes(tagText)) return;
+
+        // Vérifier qu'il n'existe pas déjà dans le conteneur visuel
         const tagsContainer = document.getElementById("tags");
         if (tagsContainer) {
           const tagsList = tagsContainer.querySelectorAll(".tag");
           let tagExists = false;
           Array.from(tagsList).forEach((tag) => {
-            if (tag.textContent.trim() === item.textContent.trim()) {
+            if (tag.textContent.trim() === tagText) {
               tagExists = true;
             }
           });
-          // If the tag already exists, return
-          if (tagExists) {
-            return;
-          }
+          if (tagExists) return;
         }
-        // If the tag does not exist, create a new tag
-        const newTag = new Tag(item.textContent.trim());
+
+        // Créer seulement le tag visuel; l'ajout au tagArray est géré par Tag.createTag()
+        const newTag = new Tag(tagText);
         newTag.createTag();
+        // Marquer visuellement l'item et ajouter une unique croix à droite
+        item.classList.add("dropdown-item-selected", "fw-bold", "d-flex", "align-items-center");
+        if (!item.querySelector(".btn-remove-selected")) {
+          const removeBtn = document.createElement("button");
+          removeBtn.className = "btn btn-sm p-0 m-0 ms-auto btn-remove-selected";
+          removeBtn.setAttribute("aria-label", `Retirer le tag ${tagText}`);
+          removeBtn.innerHTML = `<img src="/assets/icons/delete-icon.svg" height="12" alt="retirer">`;
+          item.appendChild(removeBtn);
+          removeBtn.addEventListener("click", (ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            removeTagFromArray(tagText);
+            const tagsContainer = document.getElementById("tags");
+            if (tagsContainer) {
+              const tagsList = tagsContainer.querySelectorAll(".tag");
+              Array.from(tagsList).forEach((tagEl) => {
+                if (tagEl.textContent.trim() === tagText) {
+                  tagEl.remove();
+                }
+              });
+            }
+            item.classList.remove("dropdown-item-selected", "fw-bold", "d-flex", "align-items-center");
+            const existingBtn = item.querySelector(".btn-remove-selected");
+            if (existingBtn) existingBtn.remove();
+          });
+        }
       });
     });
   });
