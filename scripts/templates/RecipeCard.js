@@ -19,7 +19,7 @@ export default class RecipeCard {
         <span class="badge rounded-pill position-absolute top-2 end-2 p-2 fs-6 m-0" id="badge">${
           this.data.time
         } min</span>
-        <img class="card-img-top object-fit-cover" src="/assets/images/recipes/${
+        <img class="card-img-top object-fit-cover" style="height: 400px;" src="/assets/images/recipes/${
           this.data.image
         }" alt="recette de ${this.data.title}">
         <div class="card-body">
